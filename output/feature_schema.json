@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0",
+  "features": [
+    {
+      "index": 0,
+      "name": "total_events",
+      "type": "numeric",
+      "description": "Total telemetry events in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 1,
+      "name": "command_count",
+      "type": "numeric",
+      "description": "Number of commands observed in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 2,
+      "name": "unique_commands",
+      "type": "numeric",
+      "description": "Distinct command strings seen in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 3,
+      "name": "unique_processes",
+      "type": "numeric",
+      "description": "Distinct process names observed in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 4,
+      "name": "unique_mitre_tactics",
+      "type": "numeric",
+      "description": "Distinct MITRE tactic labels seen in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 5,
+      "name": "unique_mitre_techniques",
+      "type": "numeric",
+      "description": "Distinct MITRE technique labels seen in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 6,
+      "name": "session_duration_seconds",
+      "type": "numeric",
+      "description": "Elapsed time from first to last event in seconds.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 7,
+      "name": "mean_inter_event_seconds",
+      "type": "numeric",
+      "description": "Average delay between telemetry events.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 8,
+      "name": "std_inter_event_seconds",
+      "type": "numeric",
+      "description": "Standard deviation of inter-event timing.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 9,
+      "name": "min_inter_event_seconds",
+      "type": "numeric",
+      "description": "Minimum inter-event delay in seconds.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 10,
+      "name": "max_inter_event_seconds",
+      "type": "numeric",
+      "description": "Maximum inter-event delay in seconds.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 11,
+      "name": "commands_per_minute",
+      "type": "numeric",
+      "description": "Command rate normalized per minute.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 12,
+      "name": "network_utility_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands using network-related utilities.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 13,
+      "name": "file_inspection_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands using file inspection utilities.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 14,
+      "name": "identity_command_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands exposing local identity or host information.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 15,
+      "name": "credential_keyword_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands containing credential-related keywords.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 16,
+      "name": "download_utility_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands using file download utilities.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 17,
+      "name": "mean_risk_score",
+      "type": "numeric",
+      "description": "Average telemetry risk score for the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 18,
+      "name": "max_risk_score",
+      "type": "numeric",
+      "description": "Highest risk score observed in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 19,
+      "name": "risk_score_std",
+      "type": "numeric",
+      "description": "Standard deviation of risk scores in the session.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 20,
+      "name": "high_or_critical_ratio",
+      "type": "numeric",
+      "description": "Fraction of events at HIGH or CRITICAL risk level.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 21,
+      "name": "path_command_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands using explicit paths.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 22,
+      "name": "pipe_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands using shell pipes.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 23,
+      "name": "redirect_ratio",
+      "type": "numeric",
+      "description": "Fraction of commands redirecting output.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 24,
+      "name": "mean_command_length",
+      "type": "numeric",
+      "description": "Average command length in characters.",
+      "source": "session_aggregation"
+    },
+    {
+      "index": 25,
+      "name": "mean_argument_count",
+      "type": "numeric",
+      "description": "Average argument count per command.",
+      "source": "session_aggregation"
+    }
+  ],
+  "feature_names": [
+    "total_events",
+    "command_count",
+    "unique_commands",
+    "unique_processes",
+    "unique_mitre_tactics",
+    "unique_mitre_techniques",
+    "session_duration_seconds",
+    "mean_inter_event_seconds",
+    "std_inter_event_seconds",
+    "min_inter_event_seconds",
+    "max_inter_event_seconds",
+    "commands_per_minute",
+    "network_utility_ratio",
+    "file_inspection_ratio",
+    "identity_command_ratio",
+    "credential_keyword_ratio",
+    "download_utility_ratio",
+    "mean_risk_score",
+    "max_risk_score",
+    "risk_score_std",
+    "high_or_critical_ratio",
+    "path_command_ratio",
+    "pipe_ratio",
+    "redirect_ratio",
+    "mean_command_length",
+    "mean_argument_count"
+  ]
+}

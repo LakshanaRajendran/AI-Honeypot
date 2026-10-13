@@ -1,0 +1,52 @@
+[
+  {
+    "session": "A82391",
+    "features": {
+      "event_count": 6,
+      "session_duration": 27.0,
+      "event_rate": 0.2222222222222222,
+      "mean_inter_event_time": 5.4,
+      "median_inter_event_time": 5.0,
+      "std_inter_event_time": 2.073644135332772,
+      "command_count": 6,
+      "unique_command_count": 6,
+      "discovery_command_count": 3,
+      "file_command_count": 1,
+      "network_command_count": 2,
+      "execution_command_count": 1,
+      "process_count": 6,
+      "unique_process_count": 6,
+      "process_switch_count": 5,
+      "process_switch_rate": 1.0,
+      "discovery_ratio": 0.5,
+      "file_activity_ratio": 0.16666666666666666,
+      "network_activity_ratio": 0.3333333333333333,
+      "execution_ratio": 0.16666666666666666
+    }
+  },
+  {
+    "session": "B91244",
+    "features": {
+      "event_count": 3,
+      "session_duration": 9.0,
+      "event_rate": 0.3333333333333333,
+      "mean_inter_event_time": 4.5,
+      "median_inter_event_time": 4.5,
+      "std_inter_event_time": 0.7071067811865476,
+      "command_count": 3,
+      "unique_command_count": 3,
+      "discovery_command_count": 2,
+      "file_command_count": 0,
+      "network_command_count": 0,
+      "execution_command_count": 0,
+      "process_count": 3,
+      "unique_process_count": 3,
+      "process_switch_count": 2,
+      "process_switch_rate": 1.0,
+      "discovery_ratio": 0.6666666666666666,
+      "file_activity_ratio": 0.0,
+      "network_activity_ratio": 0.0,
+      "execution_ratio": 0.0
+    }
+  }
+]
