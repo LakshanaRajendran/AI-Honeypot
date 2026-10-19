@@ -1,0 +1,44 @@
+# Module 3: AI Decision & XAI Engine Dependencies
+#
+# Uncomment the following lines when implementing the corresponding features.
+# These are future dependencies not yet installed.
+#
+# sentence-transformers==3.4.1
+# torch>=2.0.0
+# transformers>=4.30.0
+# flask>=3.0.0
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# requests>=2.31.0
+# jsonschema>=4.20.0
+
+cloudpickle==3.1.2
+colorama==0.4.6
+contourpy==1.3.2
+cycler==0.12.1
+fonttools==4.63.0
+joblib==1.5.3
+kiwisolver==1.5.0
+llvmlite==0.48.0
+matplotlib==3.10.9
+numba==0.66.0
+numpy==2.2.6
+packaging==26.2
+pandas==2.3.3
+pillow==12.3.0
+pydantic==2.14.1
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+pytz==2026.2
+scikit-learn==1.7.2
+scipy==1.15.3
+shap==0.49.1
+six==1.17.0
+slicer==0.0.8
+threadpoolctl==3.6.0
+tqdm==4.69.0
+typing_extensions==4.16.0
+tzdata==2026.3
+
+# Behavior embedding generation (Word2Vec for offline training data preparation)
+gensim>=4.3.0

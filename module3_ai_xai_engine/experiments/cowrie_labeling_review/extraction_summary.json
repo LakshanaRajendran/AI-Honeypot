@@ -1,0 +1,87 @@
+{
+  "extraction_stats": {
+    "files_inspected": 83,
+    "source_files": [
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-23",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-24",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-25",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-26",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-27",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-28",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-29",
+      "raw\\logs\\cowrie-logs-139_162_38_249\\cowrie.json.2024-10-30",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json.2024-10-24",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json.2024-10-25",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json.2024-10-26",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json.2024-10-27",
+      "raw\\logs\\cowrie-logs-172_233_11_134\\cowrie.json.2024-10-28"
+    ],
+    "total_lines_read": 27294,
+    "malformed_lines": 0,
+    "skipped_records_no_session": 0,
+    "duplicate_session_fragments_merged": 0
+  },
+  "total_command_sessions_extracted": 1000,
+  "constant_features": [],
+  "binary_label_distribution": {
+    "0": 879,
+    "1": 118,
+    "unresolved": 3
+  },
+  "resolved_sessions_count": 997,
+  "unresolved_sessions_count": 3,
+  "train_set_size": 797,
+  "test_set_size": 200,
+  "intent_distribution": {
+    "reconnaissance": {
+      "positive (1)": 889,
+      "negative / unobserved (0)": 111
+    },
+    "credential_access": {
+      "positive (1)": 3,
+      "negative / unobserved (0)": 997
+    },
+    "persistence": {
+      "positive (1)": 64,
+      "negative / unobserved (0)": 936
+    },
+    "defense_evasion": {
+      "positive (1)": 57,
+      "negative / unobserved (0)": 943
+    },
+    "execution": {
+      "positive (1)": 64,
+      "negative / unobserved (0)": 936
+    }
+  },
+  "feature_ordering_verified": [
+    "total_events",
+    "command_count",
+    "unique_commands",
+    "unique_processes",
+    "unique_mitre_tactics",
+    "unique_mitre_techniques",
+    "session_duration_seconds",
+    "mean_inter_event_seconds",
+    "std_inter_event_seconds",
+    "min_inter_event_seconds",
+    "max_inter_event_seconds",
+    "commands_per_minute",
+    "network_utility_ratio",
+    "file_inspection_ratio",
+    "identity_command_ratio",
+    "credential_keyword_ratio",
+    "download_utility_ratio",
+    "mean_risk_score",
+    "max_risk_score",
+    "risk_score_std",
+    "high_or_critical_ratio",
+    "path_command_ratio",
+    "pipe_ratio",
+    "redirect_ratio",
+    "mean_command_length",
+    "mean_argument_count"
+  ]
+}

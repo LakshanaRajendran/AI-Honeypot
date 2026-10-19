@@ -1,0 +1,134 @@
+{
+  "model_version": "1.0.0-two-output-v1",
+  "timestamp": "2026-10-19",
+  "provenance": "experimental_provisional_label_pipeline",
+  "is_production_validated": false,
+  "feature_count": 26,
+  "feature_names": [
+    "total_events",
+    "command_count",
+    "unique_commands",
+    "unique_processes",
+    "unique_mitre_tactics",
+    "unique_mitre_techniques",
+    "session_duration_seconds",
+    "mean_inter_event_seconds",
+    "std_inter_event_seconds",
+    "min_inter_event_seconds",
+    "max_inter_event_seconds",
+    "commands_per_minute",
+    "network_utility_ratio",
+    "file_inspection_ratio",
+    "identity_command_ratio",
+    "credential_keyword_ratio",
+    "download_utility_ratio",
+    "mean_risk_score",
+    "max_risk_score",
+    "risk_score_std",
+    "high_or_critical_ratio",
+    "path_command_ratio",
+    "pipe_ratio",
+    "redirect_ratio",
+    "mean_command_length",
+    "mean_argument_count"
+  ],
+  "random_state": 42,
+  "models": {
+    "binary_model": {
+      "algorithm": "RandomForestClassifier",
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 6,
+        "class_weight": "balanced"
+      },
+      "target": "is_weaponized_intrusion",
+      "metrics": {
+        "confusion_matrix": {
+          "tn": 176,
+          "fp": 0,
+          "fn": 0,
+          "tp": 24
+        },
+        "class_0_probing": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 176
+        },
+        "class_1_weaponized": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 24
+        },
+        "macro_f1": 1.0,
+        "pr_auc": 1.0,
+        "roc_auc": 1.0,
+        "brier_score": 6.0999999999999985e-05
+      }
+    },
+    "intent_model": {
+      "algorithm": "MultiOutputClassifier(RandomForestClassifier)",
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 6,
+        "class_weight": "balanced"
+      },
+      "supported_targets": [
+        "reconnaissance",
+        "execution",
+        "persistence",
+        "defense_evasion"
+      ],
+      "unsupported_targets": [
+        "credential_access"
+      ],
+      "metrics": {
+        "supported_intents": {
+          "reconnaissance": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 177,
+            "status": "SUPPORTED_TRAINED"
+          },
+          "execution": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 15,
+            "status": "SUPPORTED_TRAINED"
+          },
+          "persistence": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 10,
+            "status": "SUPPORTED_TRAINED"
+          },
+          "defense_evasion": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 9,
+            "status": "SUPPORTED_TRAINED"
+          }
+        },
+        "unsupported_intents": {
+          "credential_access": {
+            "status": "UNSUPPORTED_INSUFFICIENT_DATA",
+            "reason": "Only 3 positive instances out of 1,000 sessions (0.3% support). Cannot reliably train or evaluate."
+          }
+        },
+        "macro_f1_supported": 1.0
+      }
+    }
+  },
+  "scaler_assumptions": "pre_standardized_by_training_split_of_cowrie_labeling_review; fitted_strictly_on_train_set; no double scaling.",
+  "disclosures_and_limitations": [
+    "PROVISIONAL TARGET LABELS: Labels were assigned via deterministic rule patterns and do not represent verified external ground truth.",
+    "BOTNET REPETITION OVERLAP: 100% of test command sequences overlap with training command archetypes; metrics reflect recognition within known campaigns rather than out-of-distribution generalization.",
+    "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+    "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases and is omitted from the ML model."
+  ]
+}

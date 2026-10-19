@@ -1,0 +1,162 @@
+{
+  "dataset_provenance": {
+    "source_dir": "data/raw/logs/",
+    "total_extracted_sessions": 1000,
+    "resolved_sessions": 997,
+    "unresolved_sessions": 3,
+    "distinct_command_archetypes": 10,
+    "dominant_archetype_count": 863,
+    "dominant_archetype_percent": 86.3
+  },
+  "random_split_reproduction": {
+    "binary_classification": {
+      "test_sample_count": 200,
+      "confusion_matrix": {
+        "tn": 176,
+        "fp": 0,
+        "fn": 0,
+        "tp": 24
+      },
+      "class_0_probing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 176
+      },
+      "class_1_weaponized": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "macro_f1": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0
+    },
+    "multilabel_intent": {
+      "reconnaissance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 177
+      },
+      "execution": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 15
+      },
+      "persistence": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 10
+      },
+      "defense_evasion": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 9
+      }
+    },
+    "evaluation_risk_note": "100% of test sessions belong to command archetypes present in training set."
+  },
+  "archetype_generalization_audit": {
+    "mirai_dropper": {
+      "held_out_sessions": 54,
+      "true_class": 1,
+      "predicted_classes_distribution": {
+        "0": 54
+      },
+      "accuracy_on_unseen_archetype": 0.0,
+      "sample_command": "['sh', 'shell', 'shell', 'enable', 'system', 'system', 'ping; sh', '', '/bin/bus",
+      "generalization_status": "FAILED_TO_GENERALIZE"
+    },
+    "ssh_key_lock": {
+      "held_out_sessions": 57,
+      "true_class": 1,
+      "predicted_classes_distribution": {
+        "1": 57
+      },
+      "accuracy_on_unseen_archetype": 1.0,
+      "sample_command": "['cd ~; chattr -ia .ssh; lockr -ia .ssh', 'lockr -ia .ssh', 'cd ~ && rm -rf .ssh",
+      "generalization_status": "GENERALIZED"
+    },
+    "release_recon": {
+      "held_out_sessions": 14,
+      "true_class": 0,
+      "predicted_classes_distribution": {
+        "0": 14
+      },
+      "accuracy_on_unseen_archetype": 1.0,
+      "sample_command": "[\"cat /etc/*release* | grep 'centos:7'\", 'file /sbin/init', 'file /sbin/init']",
+      "generalization_status": "GENERALIZED"
+    },
+    "miner_clean_sh": {
+      "held_out_sessions": 7,
+      "true_class": 1,
+      "predicted_classes_distribution": {
+        "0": 7
+      },
+      "accuracy_on_unseen_archetype": 0.0,
+      "sample_command": "['chmod +x clean.sh; sh clean.sh; rm -rf clean.sh; chmod +x setup.sh; sh setup.s",
+      "generalization_status": "FAILED_TO_GENERALIZE"
+    }
+  },
+  "feature_leakage_audit": {
+    "canonical_26_features": {
+      "macro_f1": 1.0,
+      "weaponized_f1": 1.0,
+      "probing_f1": 1.0
+    },
+    "telemetry_only_19_features": {
+      "features_used": [
+        "total_events",
+        "command_count",
+        "unique_commands",
+        "unique_processes",
+        "session_duration_seconds",
+        "mean_inter_event_seconds",
+        "std_inter_event_seconds",
+        "min_inter_event_seconds",
+        "max_inter_event_seconds",
+        "commands_per_minute",
+        "network_utility_ratio",
+        "file_inspection_ratio",
+        "identity_command_ratio",
+        "credential_keyword_ratio",
+        "download_utility_ratio",
+        "path_command_ratio",
+        "pipe_ratio",
+        "redirect_ratio",
+        "mean_command_length",
+        "mean_argument_count"
+      ],
+      "macro_f1": 1.0,
+      "weaponized_f1": 1.0,
+      "probing_f1": 1.0
+    }
+  },
+  "intent_support_status": {
+    "reconnaissance": {
+      "support_total": 889,
+      "status": "SUPPORTED"
+    },
+    "execution": {
+      "support_total": 64,
+      "status": "SUPPORTED"
+    },
+    "persistence": {
+      "support_total": 64,
+      "status": "SUPPORTED"
+    },
+    "defense_evasion": {
+      "support_total": 57,
+      "status": "SUPPORTED"
+    },
+    "credential_access": {
+      "support_total": 3,
+      "status": "UNSUPPORTED_DATA_SCARCITY"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "binary": {
+    "confusion_matrix": {
+      "tn": 176,
+      "fp": 0,
+      "fn": 0,
+      "tp": 24
+    },
+    "class_0_probing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 176
+    },
+    "class_1_weaponized": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 24
+    },
+    "macro_f1": 1.0,
+    "pr_auc": 1.0,
+    "roc_auc": 1.0,
+    "brier_score": 6.0999999999999985e-05
+  },
+  "intent": {
+    "supported_intents": {
+      "reconnaissance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 177,
+        "status": "SUPPORTED_TRAINED"
+      },
+      "execution": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 15,
+        "status": "SUPPORTED_TRAINED"
+      },
+      "persistence": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 10,
+        "status": "SUPPORTED_TRAINED"
+      },
+      "defense_evasion": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 9,
+        "status": "SUPPORTED_TRAINED"
+      }
+    },
+    "unsupported_intents": {
+      "credential_access": {
+        "status": "UNSUPPORTED_INSUFFICIENT_DATA",
+        "reason": "Only 3 positive instances out of 1,000 sessions (0.3% support). Cannot reliably train or evaluate."
+      }
+    },
+    "macro_f1_supported": 1.0
+  }
+}
