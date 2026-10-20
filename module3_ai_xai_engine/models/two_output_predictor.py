@@ -17,6 +17,7 @@ import joblib
 import numpy as np
 
 from config import MODULE2_CANONICAL_FEATURE_NAMES, MODULE2_FEATURE_COUNT
+from explainability.shap_explainer import ShapExplainer
 from models.predictor import AnomalyPredictor
 from preprocessing.validator import Module2InputValidator
 from schemas.feature_object import Module2SessionPayload
@@ -25,6 +26,7 @@ from schemas.prediction_schema import (
     BinaryClassificationOutput,
     FeatureDeviationExplanation,
     MultiLabelIntentOutput,
+    ShapExplanation,
     UnifiedModule3Result,
 )
 
@@ -74,6 +76,17 @@ class TwoOutputPredictor:
 
         self.supported_intents = self.metadata["models"]["intent_model"]["supported_targets"]
         self.unsupported_intents = self.metadata["models"]["intent_model"]["unsupported_targets"]
+
+        # SHAP is optional: an explainer initialization failure must not
+        # prevent the existing classifier and intent model from running.
+        self.shap_explainer = None
+        self.shap_initialization_error = None
+        try:
+            self.shap_explainer = ShapExplainer(self.binary_model)
+        except Exception as exc:
+            self.shap_initialization_error = (
+                f"{type(exc).__name__}: {exc}"
+            )
 
     def predict_session(
         self,
@@ -166,12 +179,34 @@ class TwoOutputPredictor:
             "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs.",
         ]
 
+        # 8. SHAP explanation of the binary model prediction.
+        shap_explanation = None
+        if self.shap_explainer is not None:
+            try:
+                shap_data = self.shap_explainer.explain(
+                    feature_vector=X_scaled[0],
+                    feature_names=MODULE2_CANONICAL_FEATURE_NAMES,
+                    top_k=5,
+                )
+                shap_explanation = ShapExplanation(**shap_data)
+            except Exception as exc:
+                limitations.append(
+                    "SHAP explanation unavailable for this prediction: "
+                    f"{type(exc).__name__}: {exc}"
+                )
+        else:
+            limitations.append(
+                "SHAP explainer could not be initialized: "
+                f"{self.shap_initialization_error or 'unknown initialization error'}"
+            )
+
         return UnifiedModule3Result(
             session_id=validated_payload.session_id,
             classification=binary_output,
             intent=intent_output,
             anomaly=aux_anomaly,
             explanations=explanations,
+            shap_explanation=shap_explanation,
             label_provenance="provisional_rule_derived_behavioral_targets",
             limitations=limitations,
         )
