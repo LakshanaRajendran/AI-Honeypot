@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.0.0",
+  "session_id": "A82391",
+  "threat_level": "high",
+  "source_classification_confidence": 0.99,
+  "detected_intent_used": "execution",
+  "selected_strategy": "controlled_execution_deception",
+  "decision_basis": [
+    "Module 3 classified the session as weaponized_intrusion.",
+    "Classification confidence: 0.99.",
+    "Detected supported intent: execution.",
+    "The strategy was selected using predefined Module 4 rules.",
+    "SHAP context (model explanation only): network_utility_ratio, unique_processes, risk_score_std.",
+    "SHAP contributions inform the explanation but do not independently determine the strategy."
+  ],
+  "requires_execution_layer": true,
+  "execution_status": "pending",
+  "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+}

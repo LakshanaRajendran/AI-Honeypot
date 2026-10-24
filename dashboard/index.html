@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Driven Adaptive Deception Mesh — Operations Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <script>
+    window.__capturedErrors = [];
+    window.addEventListener('error', function(e) {
+      window.__capturedErrors.push(e.message || String(e));
+    });
+  </script>
+
+  <!-- Offline-First Local Vendor Scripts with CDN Fallback -->
+  <script src="/vendor/tailwindcss.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="/vendor/react.production.min.js"></script>
+  <script src="/vendor/react-dom.production.min.js"></script>
+  <script src="/vendor/babel.min.js"></script>
+  <script>
+    // Configure Babel to use classic JSX runtime (React.createElement)
+    // Prevents inserting ES module imports ("react/jsx-runtime") in unbundled browser environment
+    if (window.Babel && Babel.availablePresets && Babel.availablePresets['react']) {
+      Babel.registerPreset('react', [
+        Babel.availablePresets['react'],
+        { runtime: 'classic' }
+      ]);
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar for Cyber SOC Theme */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+    body {
+      background-color: #070b14;
+      color: #e2e8f0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#070b14] text-slate-100 antialiased min-h-screen">
+  <div id="root">
+    <!-- Initial Loading State -->
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="text-center space-y-4">
+        <div class="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <div class="text-sm font-mono text-cyan-400">Initializing Adaptive Deception Operations Dashboard...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Dashboard React Application -->
+  <script type="text/babel" data-presets="react,typescript" src="/app.tsx"></script>
+</body>
+</html>

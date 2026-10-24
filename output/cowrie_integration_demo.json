@@ -1,0 +1,2578 @@
+{
+  "report_version": "1.0",
+  "mode": "offline_historical_log_demo",
+  "source_log_directory": "/home/mohana/adaptive-honeypot-integration/ai-honeypot/data/sample_cowrie_logs",
+  "source_log_files": [
+    "cowrie.json"
+  ],
+  "command_events_processed": 42,
+  "sessions_processed": 11,
+  "safety": {
+    "commands_executed": false,
+    "cowrie_configuration_changed": false,
+    "deception_response_executed": false,
+    "module4_execution_status": "simulated_only",
+    "live_deception_applied": false
+  },
+  "limitations": [
+    "Historical Cowrie logs are used; this is not live monitoring.",
+    "Local source IPs such as 127.0.0.1 indicate local test activity.",
+    "MITRE and risk scores are deterministic heuristic enrichments, not ground-truth labels.",
+    "Module 3 model metadata states that the model is not production validated.",
+    "SHAP is an explanation of model behavior, not proof of malicious intent.",
+    "Only Cowrie command-input events are aggregated in this adapter.",
+    "Kernel process telemetry is not session-correlated in this demo.",
+    "Module 4 execution adapter operates in simulation-only mode; no live deception profiles are applied."
+  ],
+  "sessions": [
+    {
+      "session_id": "24a21541a247",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 4,
+      "commands_observed": [
+        "whoami",
+        "pwd",
+        "ls",
+        "exit"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 4.0,
+        "command_count": 4.0,
+        "unique_commands": 4.0,
+        "unique_processes": 4.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 150.72964,
+        "mean_inter_event_seconds": 50.24321333333334,
+        "std_inter_event_seconds": 69.18182959302187,
+        "min_inter_event_seconds": 1.060481,
+        "max_inter_event_seconds": 148.08062,
+        "commands_per_minute": 1.5922548478189162,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.25,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.75,
+        "max_risk_score": 4.0,
+        "risk_score_std": 0.82915619758885,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 3.75,
+        "mean_argument_count": 0.0
+      },
+      "module3_prediction": {
+        "session_id": "24a21541a247",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.61,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [],
+          "intent_scores": {
+            "reconnaissance": 0.44,
+            "execution": 0.26,
+            "persistence": 0.02,
+            "defense_evasion": 0.03
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 150.72964,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 24.123507725626794,
+            "description": "Feature 'session_duration_seconds' deviates by 24.12 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 50.24321333333334,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 90.58618863990446,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 90.59 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "std_inter_event_seconds",
+            "observed_value": 69.18182959302187,
+            "reference_mean": 0.5897953191884969,
+            "reference_std": 1.7378239349926836,
+            "deviation_score": 39.47007110022464,
+            "description": "Feature 'std_inter_event_seconds' deviates by 39.47 standard deviations from training baseline (mean: 0.59, std: 1.74)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 1.060481,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 30.214871189822215,
+            "description": "Feature 'min_inter_event_seconds' deviates by 30.21 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 148.08062,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 24.098219526905606,
+            "description": "Feature 'max_inter_event_seconds' deviates by 24.10 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 1.5922548478189162,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.107695243554501,
+            "description": "Feature 'commands_per_minute' deviates by 3.11 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.75,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 2.828890100517425,
+            "description": "Feature 'mean_risk_score' deviates by 2.83 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.179247,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.103996,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.074663,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.042539,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.040851,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "24a21541a247",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.61 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "24a21541a247",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:21.850719+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "2d5b8b398402",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 2,
+      "commands_observed": [
+        "echo hello",
+        "ls"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 2.0,
+        "command_count": 2.0,
+        "unique_commands": 2.0,
+        "unique_processes": 2.0,
+        "unique_mitre_tactics": 0.0,
+        "unique_mitre_techniques": 0.0,
+        "session_duration_seconds": 3.169892,
+        "mean_inter_event_seconds": 3.169892,
+        "std_inter_event_seconds": 0.0,
+        "min_inter_event_seconds": 3.169892,
+        "max_inter_event_seconds": 3.169892,
+        "commands_per_minute": 37.85617932724522,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.0,
+        "max_risk_score": 2.0,
+        "risk_score_std": 0.0,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 6.0,
+        "mean_argument_count": 0.5
+      },
+      "module3_prediction": {
+        "session_id": "2d5b8b398402",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.97,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "reconnaissance"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.86,
+            "execution": 0.09,
+            "persistence": 0.03,
+            "defense_evasion": 0.06
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "unique_mitre_tactics",
+            "observed_value": 0.0,
+            "reference_mean": 1.015056461731493,
+            "reference_std": 0.14952590263017218,
+            "deviation_score": 6.788499142132376,
+            "description": "Feature 'unique_mitre_tactics' deviates by 6.79 standard deviations from training baseline (mean: 1.02, std: 0.15)."
+          },
+          {
+            "feature_name": "unique_mitre_techniques",
+            "observed_value": 0.0,
+            "reference_mean": 1.0225846925972397,
+            "reference_std": 0.25931449911643417,
+            "deviation_score": 3.9434150272410777,
+            "description": "Feature 'unique_mitre_techniques' deviates by 3.94 standard deviations from training baseline (mean: 1.02, std: 0.26)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 3.169892,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 5.239678543455473,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 5.24 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 3.169892,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 90.4583291570026,
+            "description": "Feature 'min_inter_event_seconds' deviates by 90.46 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 37.85617932724522,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 2.6110624560852376,
+            "description": "Feature 'commands_per_minute' deviates by 2.61 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 4.701036085830377,
+            "description": "Feature 'mean_risk_score' deviates by 4.70 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 2.398844330809399,
+            "description": "Feature 'max_risk_score' deviates by 2.40 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.180313,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.106353,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": -0.072731,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": -0.063106,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.039161,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "2d5b8b398402",
+        "threat_level": "low",
+        "source_classification_confidence": 0.97,
+        "detected_intent_used": null,
+        "selected_strategy": "standard_observation",
+        "decision_basis": [
+          "Module 3 classified the session as low_interaction_probe.",
+          "The prediction met the configured confidence threshold.",
+          "Use the standard observation profile; no escalation is proposed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "2d5b8b398402",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:22.122223+00:00",
+        "requested_strategy": "standard_observation",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_standard_observation"
+      }
+    },
+    {
+      "session_id": "31c0f469aa06",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 5,
+      "commands_observed": [
+        "ld",
+        "ls",
+        "ped",
+        "pwd",
+        "curl --version"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 5.0,
+        "command_count": 5.0,
+        "unique_commands": 5.0,
+        "unique_processes": 5.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 51.467937,
+        "mean_inter_event_seconds": 12.86698425,
+        "std_inter_event_seconds": 18.76428736244685,
+        "min_inter_event_seconds": 1.773549,
+        "max_inter_event_seconds": 45.3651,
+        "commands_per_minute": 5.828871672085866,
+        "network_utility_ratio": 0.2,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.2,
+        "mean_risk_score": 3.7,
+        "max_risk_score": 8.5,
+        "risk_score_std": 2.4413111231467406,
+        "high_or_critical_ratio": 0.2,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 4.8,
+        "mean_argument_count": 0.2
+      },
+      "module3_prediction": {
+        "session_id": "31c0f469aa06",
+        "classification": {
+          "predicted_class": 1,
+          "predicted_label": "weaponized_intrusion",
+          "confidence": 0.88,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "execution"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.1,
+            "execution": 0.65,
+            "persistence": 0.23,
+            "defense_evasion": 0.14
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 51.467937,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 8.026671916938334,
+            "description": "Feature 'session_duration_seconds' deviates by 8.03 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 12.86698425,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 22.821037966989007,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 22.82 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "std_inter_event_seconds",
+            "observed_value": 18.76428736244685,
+            "reference_mean": 0.5897953191884969,
+            "reference_std": 1.7378239349926836,
+            "deviation_score": 10.458189507750605,
+            "description": "Feature 'std_inter_event_seconds' deviates by 10.46 standard deviations from training baseline (mean: 0.59, std: 1.74)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 1.773549,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 50.57964699014818,
+            "description": "Feature 'min_inter_event_seconds' deviates by 50.58 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 45.3651,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 7.169769653368504,
+            "description": "Feature 'max_inter_event_seconds' deviates by 7.17 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 5.828871672085866,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.0496749698781493,
+            "description": "Feature 'commands_per_minute' deviates by 3.05 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "download_utility_ratio",
+            "observed_value": 0.2,
+            "reference_mean": 0.00018820577164366378,
+            "reference_std": 0.003061840487305503,
+            "deviation_score": 65.25872103944768,
+            "description": "Feature 'download_utility_ratio' deviates by 65.26 standard deviations from training baseline (mean: 0.00, std: 0.00)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 8.5,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 4.9393387549644965,
+            "description": "Feature 'max_risk_score' deviates by 4.94 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          },
+          {
+            "feature_name": "risk_score_std",
+            "observed_value": 2.4413111231467406,
+            "reference_mean": 0.12279477463089898,
+            "reference_std": 0.41126395027874735,
+            "deviation_score": 5.63753848822488,
+            "description": "Feature 'risk_score_std' deviates by 5.64 standard deviations from training baseline (mean: 0.12, std: 0.41)."
+          },
+          {
+            "feature_name": "high_or_critical_ratio",
+            "observed_value": 0.2,
+            "reference_mean": 0.010225846925972396,
+            "reference_std": 0.043730659428992284,
+            "deviation_score": 4.339613341119945,
+            "description": "Feature 'high_or_critical_ratio' deviates by 4.34 standard deviations from training baseline (mean: 0.01, std: 0.04)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": 0.119465,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": 0.085572,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.074663,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.058971,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "max_inter_event_seconds",
+              "shap_value": 0.045182,
+              "direction": "supports_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "31c0f469aa06",
+        "threat_level": "high",
+        "source_classification_confidence": 0.88,
+        "detected_intent_used": "execution",
+        "selected_strategy": "controlled_execution_deception",
+        "decision_basis": [
+          "Module 3 classified the session as weaponized_intrusion.",
+          "Classification confidence: 0.88.",
+          "Detected supported intent: execution.",
+          "The strategy was selected using predefined Module 4 rules.",
+          "SHAP context (model explanation only): network_utility_ratio, unique_processes, risk_score_std.",
+          "SHAP contributions inform the explanation but do not independently determine the strategy."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "31c0f469aa06",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:22.418587+00:00",
+        "requested_strategy": "controlled_execution_deception",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_simulated_execution_deception"
+      }
+    },
+    {
+      "session_id": "34e8c0fc7cc1",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 4,
+      "commands_observed": [
+        "pwd",
+        "ls",
+        "whoami",
+        "exit"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 4.0,
+        "command_count": 4.0,
+        "unique_commands": 4.0,
+        "unique_processes": 4.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 6.137265,
+        "mean_inter_event_seconds": 2.0457549999999998,
+        "std_inter_event_seconds": 0.7445407744003457,
+        "min_inter_event_seconds": 1.100068,
+        "max_inter_event_seconds": 2.919558,
+        "commands_per_minute": 39.10536696720771,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.25,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.75,
+        "max_risk_score": 4.0,
+        "risk_score_std": 0.82915619758885,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 3.75,
+        "mean_argument_count": 0.0
+      },
+      "module3_prediction": {
+        "session_id": "34e8c0fc7cc1",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.62,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [],
+          "intent_scores": {
+            "reconnaissance": 0.42,
+            "execution": 0.08,
+            "persistence": 0.03,
+            "defense_evasion": 0.07
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 2.0457549999999998,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 3.2015565859900574,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 3.20 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 1.100068,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 31.34545113396149,
+            "description": "Feature 'min_inter_event_seconds' deviates by 31.35 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 39.10536696720771,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 2.593954888478795,
+            "description": "Feature 'commands_per_minute' deviates by 2.59 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.75,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 2.828890100517425,
+            "description": "Feature 'mean_risk_score' deviates by 2.83 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.179247,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.103996,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.074663,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.042539,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.040851,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "34e8c0fc7cc1",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.62 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "34e8c0fc7cc1",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:22.767797+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "3a1819bb37de",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 5,
+      "commands_observed": [
+        "whoami",
+        "pwd",
+        "ls",
+        "uname -a",
+        "cat /etc/passwd"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 5.0,
+        "command_count": 5.0,
+        "unique_commands": 5.0,
+        "unique_processes": 5.0,
+        "unique_mitre_tactics": 2.0,
+        "unique_mitre_techniques": 3.0,
+        "session_duration_seconds": 183.977517,
+        "mean_inter_event_seconds": 45.99437925,
+        "std_inter_event_seconds": 68.64519983590695,
+        "min_inter_event_seconds": 1.826375,
+        "max_inter_event_seconds": 164.763314,
+        "commands_per_minute": 1.6306340301353235,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.2,
+        "identity_command_ratio": 0.4,
+        "credential_keyword_ratio": 0.2,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 4.3,
+        "max_risk_score": 9.5,
+        "risk_score_std": 2.749545416973504,
+        "high_or_critical_ratio": 0.2,
+        "path_command_ratio": 0.2,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 6.8,
+        "mean_argument_count": 0.4
+      },
+      "module3_prediction": {
+        "session_id": "3a1819bb37de",
+        "classification": {
+          "predicted_class": 1,
+          "predicted_label": "weaponized_intrusion",
+          "confidence": 0.61,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "reconnaissance",
+            "execution"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.51,
+            "execution": 0.75,
+            "persistence": 0.14,
+            "defense_evasion": 0.13
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "unique_mitre_tactics",
+            "observed_value": 2.0,
+            "reference_mean": 1.015056461731493,
+            "reference_std": 0.14952590263017218,
+            "deviation_score": 6.587109797990007,
+            "description": "Feature 'unique_mitre_tactics' deviates by 6.59 standard deviations from training baseline (mean: 1.02, std: 0.15)."
+          },
+          {
+            "feature_name": "unique_mitre_techniques",
+            "observed_value": 3.0,
+            "reference_mean": 1.0225846925972397,
+            "reference_std": 0.25931449911643417,
+            "deviation_score": 7.625548568014648,
+            "description": "Feature 'unique_mitre_techniques' deviates by 7.63 standard deviations from training baseline (mean: 1.02, std: 0.26)."
+          },
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 183.977517,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 29.5151703798175,
+            "description": "Feature 'session_duration_seconds' deviates by 29.52 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 45.99437925,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 82.88281970989938,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 82.88 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "std_inter_event_seconds",
+            "observed_value": 68.64519983590695,
+            "reference_mean": 0.5897953191884969,
+            "reference_std": 1.7378239349926836,
+            "deviation_score": 39.16127701222217,
+            "description": "Feature 'std_inter_event_seconds' deviates by 39.16 standard deviations from training baseline (mean: 0.59, std: 1.74)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 1.826375,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 52.088324488546675,
+            "description": "Feature 'min_inter_event_seconds' deviates by 52.09 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 164.763314,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 26.847678899107176,
+            "description": "Feature 'max_inter_event_seconds' deviates by 26.85 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 1.6306340301353235,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.1071696424076807,
+            "description": "Feature 'commands_per_minute' deviates by 3.11 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 9.5,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 6.0682899989297105,
+            "description": "Feature 'max_risk_score' deviates by 6.07 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          },
+          {
+            "feature_name": "risk_score_std",
+            "observed_value": 2.749545416973504,
+            "reference_mean": 0.12279477463089898,
+            "reference_std": 0.41126395027874735,
+            "deviation_score": 6.38701894625639,
+            "description": "Feature 'risk_score_std' deviates by 6.39 standard deviations from training baseline (mean: 0.12, std: 0.41)."
+          },
+          {
+            "feature_name": "high_or_critical_ratio",
+            "observed_value": 0.2,
+            "reference_mean": 0.010225846925972396,
+            "reference_std": 0.043730659428992284,
+            "deviation_score": 4.339613341119945,
+            "description": "Feature 'high_or_critical_ratio' deviates by 4.34 standard deviations from training baseline (mean: 0.01, std: 0.04)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.19821,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": 0.085652,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.071753,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.037158,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "max_inter_event_seconds",
+              "shap_value": 0.036281,
+              "direction": "supports_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "3a1819bb37de",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.61 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "3a1819bb37de",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:23.146335+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "689276e8601d",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 7,
+      "commands_observed": [
+        "pwd",
+        "whoami",
+        "ls",
+        "ls",
+        "yes",
+        "exit",
+        "exit"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 7.0,
+        "command_count": 7.0,
+        "unique_commands": 5.0,
+        "unique_processes": 5.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 63.813059,
+        "mean_inter_event_seconds": 10.635509833333332,
+        "std_inter_event_seconds": 9.034214279282148,
+        "min_inter_event_seconds": 2.483216,
+        "max_inter_event_seconds": 28.114445,
+        "commands_per_minute": 6.581724909943589,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.14285714285714285,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.7142857142857144,
+        "max_risk_score": 4.0,
+        "risk_score_std": 0.6998542122237652,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 3.4285714285714284,
+        "mean_argument_count": 0.0
+      },
+      "module3_prediction": {
+        "session_id": "689276e8601d",
+        "classification": {
+          "predicted_class": 1,
+          "predicted_label": "weaponized_intrusion",
+          "confidence": 0.57,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [],
+          "intent_scores": {
+            "reconnaissance": 0.36,
+            "execution": 0.37,
+            "persistence": 0.02,
+            "defense_evasion": 0.03
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "total_events",
+            "observed_value": 7.0,
+            "reference_mean": 1.6662484316185697,
+            "reference_std": 2.2948368436633038,
+            "deviation_score": 2.324239992533427,
+            "description": "Feature 'total_events' deviates by 2.32 standard deviations from training baseline (mean: 1.67, std: 2.29)."
+          },
+          {
+            "feature_name": "command_count",
+            "observed_value": 7.0,
+            "reference_mean": 1.6662484316185697,
+            "reference_std": 2.2948368436633038,
+            "deviation_score": 2.324239992533427,
+            "description": "Feature 'command_count' deviates by 2.32 standard deviations from training baseline (mean: 1.67, std: 2.29)."
+          },
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 63.813059,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 10.028626304847917,
+            "description": "Feature 'session_duration_seconds' deviates by 10.03 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 10.635509833333332,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 18.7752526168665,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 18.78 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "std_inter_event_seconds",
+            "observed_value": 9.034214279282148,
+            "reference_mean": 0.5897953191884969,
+            "reference_std": 1.7378239349926836,
+            "deviation_score": 4.859191308197285,
+            "description": "Feature 'std_inter_event_seconds' deviates by 4.86 standard deviations from training baseline (mean: 0.59, std: 1.74)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 2.483216,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 70.84729235901891,
+            "description": "Feature 'min_inter_event_seconds' deviates by 70.85 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 28.114445,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 4.326705153931787,
+            "description": "Feature 'max_inter_event_seconds' deviates by 4.33 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 6.581724909943589,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.039364679212155,
+            "description": "Feature 'commands_per_minute' deviates by 3.04 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.14285714285714285,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.2229335462203714,
+            "description": "Feature 'identity_command_ratio' deviates by 2.22 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.7142857142857144,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 2.918039909341851,
+            "description": "Feature 'mean_risk_score' deviates by 2.92 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.179247,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": 0.085572,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.074663,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.047496,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.042539,
+              "direction": "supports_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "689276e8601d",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.57 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "689276e8601d",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:23.409837+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "bb2ef9160436",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 7,
+      "commands_observed": [
+        "ls",
+        "[wd",
+        "pwd",
+        "whoami",
+        "ped",
+        "pwd",
+        "exit"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 7.0,
+        "command_count": 7.0,
+        "unique_commands": 6.0,
+        "unique_processes": 6.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 54.738202,
+        "mean_inter_event_seconds": 9.123033666666666,
+        "std_inter_event_seconds": 14.944413180489878,
+        "min_inter_event_seconds": 1.549588,
+        "max_inter_event_seconds": 42.480578,
+        "commands_per_minute": 7.672886296119116,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.14285714285714285,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.7142857142857144,
+        "max_risk_score": 4.0,
+        "risk_score_std": 0.6998542122237652,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 3.4285714285714284,
+        "mean_argument_count": 0.0
+      },
+      "module3_prediction": {
+        "session_id": "bb2ef9160436",
+        "classification": {
+          "predicted_class": 1,
+          "predicted_label": "weaponized_intrusion",
+          "confidence": 0.57,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [],
+          "intent_scores": {
+            "reconnaissance": 0.36,
+            "execution": 0.37,
+            "persistence": 0.02,
+            "defense_evasion": 0.04
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "total_events",
+            "observed_value": 7.0,
+            "reference_mean": 1.6662484316185697,
+            "reference_std": 2.2948368436633038,
+            "deviation_score": 2.324239992533427,
+            "description": "Feature 'total_events' deviates by 2.32 standard deviations from training baseline (mean: 1.67, std: 2.29)."
+          },
+          {
+            "feature_name": "command_count",
+            "observed_value": 7.0,
+            "reference_mean": 1.6662484316185697,
+            "reference_std": 2.2948368436633038,
+            "deviation_score": 2.324239992533427,
+            "description": "Feature 'command_count' deviates by 2.32 standard deviations from training baseline (mean: 1.67, std: 2.29)."
+          },
+          {
+            "feature_name": "unique_commands",
+            "observed_value": 6.0,
+            "reference_mean": 1.5508155583437893,
+            "reference_std": 1.937930174817478,
+            "deviation_score": 2.295843523916053,
+            "description": "Feature 'unique_commands' deviates by 2.30 standard deviations from training baseline (mean: 1.55, std: 1.94)."
+          },
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 54.738202,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 8.556996474798282,
+            "description": "Feature 'session_duration_seconds' deviates by 8.56 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 9.123033666666666,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 16.033050478313587,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 16.03 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "std_inter_event_seconds",
+            "observed_value": 14.944413180489878,
+            "reference_mean": 0.5897953191884969,
+            "reference_std": 1.7378239349926836,
+            "deviation_score": 8.260110574067916,
+            "description": "Feature 'std_inter_event_seconds' deviates by 8.26 standard deviations from training baseline (mean: 0.59, std: 1.74)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 1.549588,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 44.18346099804531,
+            "description": "Feature 'min_inter_event_seconds' deviates by 44.18 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 42.480578,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 6.694374249771123,
+            "description": "Feature 'max_inter_event_seconds' deviates by 6.69 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 7.672886296119116,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.024421273925101,
+            "description": "Feature 'commands_per_minute' deviates by 3.02 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.14285714285714285,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.2229335462203714,
+            "description": "Feature 'identity_command_ratio' deviates by 2.22 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.7142857142857144,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 2.918039909341851,
+            "description": "Feature 'mean_risk_score' deviates by 2.92 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.179247,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": 0.088019,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.072216,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.047496,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.042539,
+              "direction": "supports_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "bb2ef9160436",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.57 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "bb2ef9160436",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:23.706517+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "c93f9ef3bfdb",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 2,
+      "commands_observed": [
+        "ls",
+        "echo hello"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 2.0,
+        "command_count": 2.0,
+        "unique_commands": 2.0,
+        "unique_processes": 2.0,
+        "unique_mitre_tactics": 0.0,
+        "unique_mitre_techniques": 0.0,
+        "session_duration_seconds": 36.564217,
+        "mean_inter_event_seconds": 36.564217,
+        "std_inter_event_seconds": 0.0,
+        "min_inter_event_seconds": 36.564217,
+        "max_inter_event_seconds": 36.564217,
+        "commands_per_minute": 3.2818971619165263,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.0,
+        "max_risk_score": 2.0,
+        "risk_score_std": 0.0,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 6.0,
+        "mean_argument_count": 0.5
+      },
+      "module3_prediction": {
+        "session_id": "c93f9ef3bfdb",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.97,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "reconnaissance"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.87,
+            "execution": 0.21,
+            "persistence": 0.03,
+            "defense_evasion": 0.06
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "unique_mitre_tactics",
+            "observed_value": 0.0,
+            "reference_mean": 1.015056461731493,
+            "reference_std": 0.14952590263017218,
+            "deviation_score": 6.788499142132376,
+            "description": "Feature 'unique_mitre_tactics' deviates by 6.79 standard deviations from training baseline (mean: 1.02, std: 0.15)."
+          },
+          {
+            "feature_name": "unique_mitre_techniques",
+            "observed_value": 0.0,
+            "reference_mean": 1.0225846925972397,
+            "reference_std": 0.25931449911643417,
+            "deviation_score": 3.9434150272410777,
+            "description": "Feature 'unique_mitre_techniques' deviates by 3.94 standard deviations from training baseline (mean: 1.02, std: 0.26)."
+          },
+          {
+            "feature_name": "session_duration_seconds",
+            "observed_value": 36.564217,
+            "reference_mean": 1.971182894604768,
+            "reference_std": 6.166535099179076,
+            "deviation_score": 5.609800892887232,
+            "description": "Feature 'session_duration_seconds' deviates by 5.61 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 36.564217,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 65.78541899789856,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 65.79 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 36.564217,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 1044.1793510346079,
+            "description": "Feature 'min_inter_event_seconds' deviates by 1044.18 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "max_inter_event_seconds",
+            "observed_value": 36.564217,
+            "reference_mean": 1.8616118644918442,
+            "reference_std": 6.067627028306179,
+            "deviation_score": 5.719304264025542,
+            "description": "Feature 'max_inter_event_seconds' deviates by 5.72 standard deviations from training baseline (mean: 1.86, std: 6.07)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 3.2818971619165263,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.084555669326886,
+            "description": "Feature 'commands_per_minute' deviates by 3.08 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 4.701036085830377,
+            "description": "Feature 'mean_risk_score' deviates by 4.70 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 2.398844330809399,
+            "description": "Feature 'max_risk_score' deviates by 2.40 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.180313,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.106353,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": -0.072731,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": -0.063106,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.039161,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "c93f9ef3bfdb",
+        "threat_level": "low",
+        "source_classification_confidence": 0.97,
+        "detected_intent_used": null,
+        "selected_strategy": "standard_observation",
+        "decision_basis": [
+          "Module 3 classified the session as low_interaction_probe.",
+          "The prediction met the configured confidence threshold.",
+          "Use the standard observation profile; no escalation is proposed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "c93f9ef3bfdb",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:24.223138+00:00",
+        "requested_strategy": "standard_observation",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_standard_observation"
+      }
+    },
+    {
+      "session_id": "d39c16d64ccc",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 2,
+      "commands_observed": [
+        "echo monitor_test",
+        "ls"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 2.0,
+        "command_count": 2.0,
+        "unique_commands": 2.0,
+        "unique_processes": 2.0,
+        "unique_mitre_tactics": 0.0,
+        "unique_mitre_techniques": 0.0,
+        "session_duration_seconds": 3.563399,
+        "mean_inter_event_seconds": 3.563399,
+        "std_inter_event_seconds": 0.0,
+        "min_inter_event_seconds": 3.563399,
+        "max_inter_event_seconds": 3.563399,
+        "commands_per_minute": 33.67571243074379,
+        "network_utility_ratio": 0.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.0,
+        "mean_risk_score": 2.0,
+        "max_risk_score": 2.0,
+        "risk_score_std": 0.0,
+        "high_or_critical_ratio": 0.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 9.5,
+        "mean_argument_count": 0.5
+      },
+      "module3_prediction": {
+        "session_id": "d39c16d64ccc",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.97,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "reconnaissance"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.86,
+            "execution": 0.09,
+            "persistence": 0.03,
+            "defense_evasion": 0.06
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "unique_mitre_tactics",
+            "observed_value": 0.0,
+            "reference_mean": 1.015056461731493,
+            "reference_std": 0.14952590263017218,
+            "deviation_score": 6.788499142132376,
+            "description": "Feature 'unique_mitre_tactics' deviates by 6.79 standard deviations from training baseline (mean: 1.02, std: 0.15)."
+          },
+          {
+            "feature_name": "unique_mitre_techniques",
+            "observed_value": 0.0,
+            "reference_mean": 1.0225846925972397,
+            "reference_std": 0.25931449911643417,
+            "deviation_score": 3.9434150272410777,
+            "description": "Feature 'unique_mitre_techniques' deviates by 3.94 standard deviations from training baseline (mean: 1.02, std: 0.26)."
+          },
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 3.563399,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 5.9531282894529305,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 5.95 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 3.563399,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 101.69664279729899,
+            "description": "Feature 'min_inter_event_seconds' deviates by 101.70 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 33.67571243074379,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 2.6683137590684645,
+            "description": "Feature 'commands_per_minute' deviates by 2.67 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 4.701036085830377,
+            "description": "Feature 'mean_risk_score' deviates by 4.70 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 2.0,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 2.398844330809399,
+            "description": "Feature 'max_risk_score' deviates by 2.40 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": -0.180313,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.106353,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": -0.072731,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": -0.063106,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.039161,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "d39c16d64ccc",
+        "threat_level": "low",
+        "source_classification_confidence": 0.97,
+        "detected_intent_used": null,
+        "selected_strategy": "standard_observation",
+        "decision_basis": [
+          "Module 3 classified the session as low_interaction_probe.",
+          "The prediction met the configured confidence threshold.",
+          "Use the standard observation profile; no escalation is proposed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "d39c16d64ccc",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:24.446801+00:00",
+        "requested_strategy": "standard_observation",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_standard_observation"
+      }
+    },
+    {
+      "session_id": "d5c8e4668070",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 3,
+      "commands_observed": [
+        "ls",
+        "pwd",
+        "curl --version"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 3.0,
+        "command_count": 3.0,
+        "unique_commands": 3.0,
+        "unique_processes": 3.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 7.233278,
+        "mean_inter_event_seconds": 3.616639,
+        "std_inter_event_seconds": 0.7056639999999998,
+        "min_inter_event_seconds": 2.910975,
+        "max_inter_event_seconds": 4.322303,
+        "commands_per_minute": 24.884982991114125,
+        "network_utility_ratio": 0.3333333333333333,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 0.3333333333333333,
+        "mean_risk_score": 4.166666666666667,
+        "max_risk_score": 8.5,
+        "risk_score_std": 3.0641293851417055,
+        "high_or_critical_ratio": 0.3333333333333333,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 6.333333333333333,
+        "mean_argument_count": 0.3333333333333333
+      },
+      "module3_prediction": {
+        "session_id": "d5c8e4668070",
+        "classification": {
+          "predicted_class": 1,
+          "predicted_label": "weaponized_intrusion",
+          "confidence": 0.65,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [],
+          "intent_scores": {
+            "reconnaissance": 0.27,
+            "execution": 0.33,
+            "persistence": 0.24,
+            "defense_evasion": 0.18
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "mean_inter_event_seconds",
+            "observed_value": 3.616639,
+            "reference_mean": 0.2799194459879309,
+            "reference_std": 0.5515553158545837,
+            "deviation_score": 6.049655325762081,
+            "description": "Feature 'mean_inter_event_seconds' deviates by 6.05 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+          },
+          {
+            "feature_name": "min_inter_event_seconds",
+            "observed_value": 2.910975,
+            "reference_mean": 0.0025141468005018823,
+            "reference_std": 0.03501477290943643,
+            "deviation_score": 83.06382168240972,
+            "description": "Feature 'min_inter_event_seconds' deviates by 83.06 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+          },
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 24.884982991114125,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 2.7887023967617797,
+            "description": "Feature 'commands_per_minute' deviates by 2.79 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "download_utility_ratio",
+            "observed_value": 0.3333333333333333,
+            "reference_mean": 0.00018820577164366378,
+            "reference_std": 0.003061840487305503,
+            "deviation_score": 108.80551385446789,
+            "description": "Feature 'download_utility_ratio' deviates by 108.81 standard deviations from training baseline (mean: 0.00, std: 0.00)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 8.5,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 4.9393387549644965,
+            "description": "Feature 'max_risk_score' deviates by 4.94 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          },
+          {
+            "feature_name": "risk_score_std",
+            "observed_value": 3.0641293851417055,
+            "reference_mean": 0.12279477463089898,
+            "reference_std": 0.41126395027874735,
+            "deviation_score": 7.151938818165858,
+            "description": "Feature 'risk_score_std' deviates by 7.15 standard deviations from training baseline (mean: 0.12, std: 0.41)."
+          },
+          {
+            "feature_name": "high_or_critical_ratio",
+            "observed_value": 0.3333333333333333,
+            "reference_mean": 0.010225846925972396,
+            "reference_std": 0.043730659428992284,
+            "deviation_score": 7.388580246131599,
+            "description": "Feature 'high_or_critical_ratio' deviates by 7.39 standard deviations from training baseline (mean: 0.01, std: 0.04)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": 0.119465,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.106318,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": 0.074663,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "path_command_ratio",
+              "shap_value": -0.052663,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": 0.042539,
+              "direction": "supports_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "d5c8e4668070",
+        "threat_level": "undetermined",
+        "source_classification_confidence": 0.65,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Weaponized intrusion was predicted, but no supported intent was detected. Manual review or a conservative profile is required.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "d5c8e4668070",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:24.708830+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    },
+    {
+      "session_id": "e02118f4a025",
+      "source_ips": [
+        "127.0.0.1"
+      ],
+      "event_count": 1,
+      "commands_observed": [
+        "curl --version"
+      ],
+      "feature_provenance": {
+        "total_events": "GENUINE_OBSERVED",
+        "command_count": "GENUINE_OBSERVED",
+        "unique_commands": "GENUINE_OBSERVED",
+        "unique_processes": "DERIVED_FROM_COMMAND_EXECUTABLES",
+        "session_duration_seconds": "GENUINE_OBSERVED",
+        "mean_inter_event_seconds": "GENUINE_OBSERVED",
+        "std_inter_event_seconds": "GENUINE_OBSERVED",
+        "min_inter_event_seconds": "GENUINE_OBSERVED",
+        "max_inter_event_seconds": "GENUINE_OBSERVED",
+        "commands_per_minute": "GENUINE_OBSERVED",
+        "network_utility_ratio": "GENUINE_OBSERVED",
+        "file_inspection_ratio": "GENUINE_OBSERVED",
+        "identity_command_ratio": "GENUINE_OBSERVED",
+        "credential_keyword_ratio": "GENUINE_OBSERVED",
+        "download_utility_ratio": "GENUINE_OBSERVED",
+        "path_command_ratio": "GENUINE_OBSERVED",
+        "pipe_ratio": "GENUINE_OBSERVED",
+        "redirect_ratio": "GENUINE_OBSERVED",
+        "mean_command_length": "GENUINE_OBSERVED",
+        "mean_argument_count": "GENUINE_OBSERVED",
+        "unique_mitre_tactics": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "unique_mitre_techniques": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "mean_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "max_risk_score": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "risk_score_std": "DETERMINISTIC_HEURISTIC_ENRICHMENT",
+        "high_or_critical_ratio": "DETERMINISTIC_HEURISTIC_ENRICHMENT"
+      },
+      "raw_features": {
+        "total_events": 1.0,
+        "command_count": 1.0,
+        "unique_commands": 1.0,
+        "unique_processes": 1.0,
+        "unique_mitre_tactics": 1.0,
+        "unique_mitre_techniques": 1.0,
+        "session_duration_seconds": 0.0,
+        "mean_inter_event_seconds": 0.0,
+        "std_inter_event_seconds": 0.0,
+        "min_inter_event_seconds": 0.0,
+        "max_inter_event_seconds": 0.0,
+        "commands_per_minute": 0.0,
+        "network_utility_ratio": 1.0,
+        "file_inspection_ratio": 0.0,
+        "identity_command_ratio": 0.0,
+        "credential_keyword_ratio": 0.0,
+        "download_utility_ratio": 1.0,
+        "mean_risk_score": 8.5,
+        "max_risk_score": 8.5,
+        "risk_score_std": 0.0,
+        "high_or_critical_ratio": 1.0,
+        "path_command_ratio": 0.0,
+        "pipe_ratio": 0.0,
+        "redirect_ratio": 0.0,
+        "mean_command_length": 14.0,
+        "mean_argument_count": 1.0
+      },
+      "module3_prediction": {
+        "session_id": "e02118f4a025",
+        "classification": {
+          "predicted_class": 0,
+          "predicted_label": "low_interaction_probe",
+          "confidence": 0.56,
+          "classification_basis": "supervised_random_forest_on_provisional_targets"
+        },
+        "intent": {
+          "detected_intents": [
+            "reconnaissance"
+          ],
+          "intent_scores": {
+            "reconnaissance": 0.91,
+            "execution": 0.28,
+            "persistence": 0.23,
+            "defense_evasion": 0.1
+          },
+          "unsupported_intents": [
+            "credential_access"
+          ],
+          "intent_basis": "multi_output_random_forest_on_provisional_targets"
+        },
+        "anomaly": null,
+        "explanations": [
+          {
+            "feature_name": "commands_per_minute",
+            "observed_value": 0.0,
+            "reference_mean": 228.51489962851142,
+            "reference_std": 73.0195939422761,
+            "deviation_score": 3.1295011008847626,
+            "description": "Feature 'commands_per_minute' deviates by 3.13 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+          },
+          {
+            "feature_name": "network_utility_ratio",
+            "observed_value": 1.0,
+            "reference_mean": 0.06982434127979925,
+            "reference_std": 0.24453057327145353,
+            "deviation_score": 3.803923764116041,
+            "description": "Feature 'network_utility_ratio' deviates by 3.80 standard deviations from training baseline (mean: 0.07, std: 0.24)."
+          },
+          {
+            "feature_name": "identity_command_ratio",
+            "observed_value": 0.0,
+            "reference_mean": 0.8752823086574654,
+            "reference_std": 0.3294858575712516,
+            "deviation_score": 2.656509493637932,
+            "description": "Feature 'identity_command_ratio' deviates by 2.66 standard deviations from training baseline (mean: 0.88, std: 0.33)."
+          },
+          {
+            "feature_name": "download_utility_ratio",
+            "observed_value": 1.0,
+            "reference_mean": 0.00018820577164366378,
+            "reference_std": 0.003061840487305503,
+            "deviation_score": 326.5394779295691,
+            "description": "Feature 'download_utility_ratio' deviates by 326.54 standard deviations from training baseline (mean: 0.00, std: 0.00)."
+          },
+          {
+            "feature_name": "mean_risk_score",
+            "observed_value": 8.5,
+            "reference_mean": 3.8832810539523215,
+            "reference_std": 0.400609784644881,
+            "deviation_score": 11.524229120215201,
+            "description": "Feature 'mean_risk_score' deviates by 11.52 standard deviations from training baseline (mean: 3.88, std: 0.40)."
+          },
+          {
+            "feature_name": "max_risk_score",
+            "observed_value": 8.5,
+            "reference_mean": 4.124843161856964,
+            "reference_std": 0.8857778450092324,
+            "deviation_score": 4.9393387549644965,
+            "description": "Feature 'max_risk_score' deviates by 4.94 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+          },
+          {
+            "feature_name": "high_or_critical_ratio",
+            "observed_value": 1.0,
+            "reference_mean": 0.010225846925972396,
+            "reference_std": 0.043730659428992284,
+            "deviation_score": 22.633414771189873,
+            "description": "Feature 'high_or_critical_ratio' deviates by 22.63 standard deviations from training baseline (mean: 0.01, std: 0.04)."
+          }
+        ],
+        "shap_explanation": {
+          "model_explained": "weaponized_intrusion_probability",
+          "explainer": "SHAP TreeExplainer",
+          "top_features": [
+            {
+              "feature_name": "network_utility_ratio",
+              "shap_value": 0.1604,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_processes",
+              "shap_value": -0.10281,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "mean_inter_event_seconds",
+              "shap_value": 0.057798,
+              "direction": "supports_weaponized_intrusion"
+            },
+            {
+              "feature_name": "unique_commands",
+              "shap_value": -0.047831,
+              "direction": "opposes_weaponized_intrusion"
+            },
+            {
+              "feature_name": "risk_score_std",
+              "shap_value": -0.047049,
+              "direction": "opposes_weaponized_intrusion"
+            }
+          ],
+          "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+        },
+        "label_provenance": "provisional_rule_derived_behavioral_targets",
+        "limitations": [
+          "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+          "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+          "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+          "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+        ]
+      },
+      "module4_decision": {
+        "schema_version": "1.0",
+        "engine_version": "1.0.0",
+        "session_id": "e02118f4a025",
+        "threat_level": "undetermined",
+        "source_classification_confidence": null,
+        "detected_intent_used": null,
+        "selected_strategy": "safe_observation_fallback",
+        "decision_basis": [
+          "Confidence 0.56 is below the configured threshold 0.65.",
+          "No adaptive deception action has been executed."
+        ],
+        "requires_execution_layer": true,
+        "execution_status": "pending",
+        "execution_note": "Decision only. A separate execution layer must validate and apply the strategy, then report its actual status."
+      },
+      "module4_simulation": {
+        "session_id": "e02118f4a025",
+        "adapter_version": "1.0.0-simulation",
+        "execution_mode": "simulation_only",
+        "applied_to_cowrie": false,
+        "commands_executed": false,
+        "timestamp": "2026-10-22T17:18:25.000575+00:00",
+        "requested_strategy": "safe_observation_fallback",
+        "status": "simulated_only",
+        "reason": "Decision validated; profile selection simulated. No changes were applied to Cowrie.",
+        "simulated_profile": "profile_safe_observation"
+      }
+    }
+  ]
+}

@@ -11,19 +11,40 @@ Safety:
 - Marks heuristic risk scores and model limitations explicitly.
 """
 
+import argparse
 import json
+import math
+import os
 import re
 import sys
 from collections import defaultdict
 from pathlib import Path
 
-import pandas as pd
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODULE3_ROOT = PROJECT_ROOT / "module3_ai_xai_engine"
-COWRIE_LOG_DIR = Path.home() / "cowrie" / "var" / "log" / "cowrie"
+DEFAULT_COWRIE_LOG_DIR = Path.home() / "cowrie" / "var" / "log" / "cowrie"
+SAMPLE_COWRIE_LOG_DIR = PROJECT_ROOT / "data" / "sample_cowrie_logs"
 
 OUTPUT_PATH = PROJECT_ROOT / "output" / "cowrie_integration_demo.json"
+
+
+def resolve_cowrie_log_dir(custom_path: str | Path | None = None) -> Path:
+    """Resolve Cowrie log directory with portable fallback for teammate laptops."""
+    if custom_path:
+        p = Path(custom_path).expanduser().resolve()
+        if p.is_dir():
+            return p
+    env_dir = os.environ.get("COWRIE_LOG_DIR")
+    if env_dir:
+        p = Path(env_dir).expanduser().resolve()
+        if p.is_dir():
+            return p
+    if DEFAULT_COWRIE_LOG_DIR.is_dir() and any(DEFAULT_COWRIE_LOG_DIR.glob("cowrie.json*")):
+        return DEFAULT_COWRIE_LOG_DIR
+    if SAMPLE_COWRIE_LOG_DIR.is_dir() and any(SAMPLE_COWRIE_LOG_DIR.glob("cowrie.json*")):
+        return SAMPLE_COWRIE_LOG_DIR
+    return DEFAULT_COWRIE_LOG_DIR
+
 
 # Make Module 3's local imports (config, models, schemas, etc.) resolve
 # to the Module 3 implementation, not another module's similarly named files.
@@ -33,49 +54,25 @@ sys.path.insert(0, str(MODULE3_ROOT))
 from config import MODULE2_CANONICAL_FEATURE_NAMES  # noqa: E402
 from models.two_output_predictor import TwoOutputPredictor  # noqa: E402
 from module4_decision_engine.decision_engine import decide  # noqa: E402
-from src.feature_extractor import extract_features  # noqa: E402
+from module4_decision_engine.execution_adapter import simulate_decision  # noqa: E402
+from training.cowrie_adapter import CowrieSessionAdapter, parse_iso_timestamp  # noqa: E402
 
 
-HIGH_RISK_PATTERNS = [
-    r"\b(nc|netcat|nmap|wget|curl|scp|socat)\b",
-    r"\b(chmod|chown|sudo)\b",
-    r"/etc/(shadow|sudoers)\b",
-    r"\b(id_rsa|authorized_keys)\b",
-    r"\bbash\s+-c\b",
-]
-
-DISCOVERY_PATTERNS = [
-    r"\b(whoami|id|hostname|uname|pwd|ls|find|ps|env|ifconfig|ip)\b",
-    r"\b(cat|less|more|head|tail|grep)\b",
-]
-
-
-def classify_heuristic_risk(command: str) -> tuple[str, float]:
-    """Assign a transparent demo heuristic, not a verified attack label."""
-    text = command.strip().lower()
-
-    if any(re.search(pattern, text) for pattern in HIGH_RISK_PATTERNS):
-        return "HIGH", 8.0
-
-    if any(re.search(pattern, text) for pattern in DISCOVERY_PATTERNS):
-        return "MEDIUM", 4.0
-
-    return "LOW", 1.0
-
-
-def read_cowrie_commands() -> tuple[list[dict], list[str]]:
+def read_cowrie_commands(log_dir: Path | None = None) -> tuple[list[dict], list[str]]:
     """Read command.input events from existing Cowrie JSON logs."""
-    if not COWRIE_LOG_DIR.is_dir():
+    target_dir = log_dir or resolve_cowrie_log_dir()
+    if not target_dir.is_dir():
         raise FileNotFoundError(
-            f"Cowrie log directory not found: {COWRIE_LOG_DIR}"
+            f"Cowrie log directory not found: {target_dir}. "
+            "Please ensure ~/cowrie or data/sample_cowrie_logs exists."
         )
 
     log_files = sorted(
-        p for p in COWRIE_LOG_DIR.glob("cowrie.json*") if p.is_file()
+        p for p in target_dir.glob("cowrie.json*") if p.is_file()
     )
     if not log_files:
         raise FileNotFoundError(
-            f"No cowrie.json log files found in {COWRIE_LOG_DIR}"
+            f"No cowrie.json log files found in {target_dir}"
         )
 
     events = []
@@ -101,23 +98,14 @@ def read_cowrie_commands() -> tuple[list[dict], list[str]]:
 
                 if not isinstance(session_id, str) or not session_id.strip():
                     continue
-                if not isinstance(timestamp, str) or not timestamp.strip():
-                    continue
                 if not isinstance(command, str) or not command.strip():
                     continue
 
-                risk, score = classify_heuristic_risk(command)
-
                 events.append({
-                    "timestamp": timestamp,
-                    "session": session_id,
+                    "timestamp": timestamp if isinstance(timestamp, str) else "",
+                    "session": session_id.strip(),
                     "source_ip": event.get("src_ip", "unknown"),
                     "command": command.strip(),
-                    "process": command.strip().split()[0].lower(),
-                    "risk": risk,
-                    "score": score,
-                    # The current Cowrie command events do not supply
-                    # verified MITRE labels, so leave them absent.
                 })
 
     print(f"Cowrie log files examined: {len(log_files)}")
@@ -127,47 +115,84 @@ def read_cowrie_commands() -> tuple[list[dict], list[str]]:
     return events, [p.name for p in log_files]
 
 
-def main() -> int:
-    events, source_files = read_cowrie_commands()
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Cowrie Honeypot to Module 4 Pipeline Demo")
+    parser.add_argument("--log-dir", help="Path to Cowrie log directory or sample directory", default=None)
+    args = parser.parse_args(argv)
+
+    log_dir = resolve_cowrie_log_dir(args.log_dir)
+    print(f"Cowrie log source directory: {log_dir}")
+    events, source_files = read_cowrie_commands(log_dir)
 
     if not events:
         print("No usable Cowrie command-input events were found.")
         return 1
 
-    df = pd.DataFrame(events)
-    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce", utc=True)
-    df = df.dropna(subset=["timestamp", "session", "command"])
-    df = df.sort_values(["session", "timestamp"], kind="mergesort")
+    # Group commands and timestamps by session
+    sessions_data: dict[str, dict] = defaultdict(lambda: {
+        "session_id": "",
+        "source_ips": set(),
+        "commands": [],
+        "timestamps": [],
+    })
 
-    if df.empty:
-        print("No valid timestamped command events remain after parsing.")
+    for ev in events:
+        sid = ev["session"]
+        sess = sessions_data[sid]
+        sess["session_id"] = sid
+        if ev.get("source_ip"):
+            sess["source_ips"].add(str(ev["source_ip"]))
+        sess["commands"].append(ev["command"])
+        ts_obj = parse_iso_timestamp(ev.get("timestamp"))
+        if ts_obj is not None:
+            sess["timestamps"].append(ts_obj)
+
+    # Filter sessions with at least one command
+    usable_sessions = [
+        s for s in sessions_data.values() if len(s["commands"]) >= 1
+    ]
+    usable_sessions.sort(key=lambda s: s["session_id"])
+
+    if not usable_sessions:
+        print("No valid command sessions remain after aggregation.")
         return 1
+
+    # Initialize Module 3 canonical Cowrie adapter with deterministic heuristic enrichment
+    adapter = CowrieSessionAdapter(enable_heuristic_enrichment=True)
 
     # Predictor loads its own saved Module 3 models and scaler.
     model_dir = MODULE3_ROOT / "experiments" / "two_output_model_v1"
     predictor = TwoOutputPredictor(model_dir=model_dir)
 
     reports = []
-    sessions = list(df.groupby("session", sort=True))
+    print(f"Usable sessions: {len(usable_sessions)}")
 
-    print(f"Usable sessions: {len(sessions)}")
+    for sess_info in usable_sessions:
+        session_id = sess_info["session_id"]
+        commands = sess_info["commands"]
+        timestamps = sorted(sess_info["timestamps"])
+        source_ips = sorted(sess_info["source_ips"])
 
-    for session_id, session_df in sessions:
-        session_df = session_df.copy().reset_index(drop=True)
+        # Construct session dictionary conforming to CowrieSessionAdapter schema
+        session_dict = {
+            "session_id": session_id,
+            "commands": commands,
+            "timestamps": timestamps,
+            "src_ip": source_ips[0] if source_ips else "unknown",
+        }
 
-        # The existing feature extractor consumes the 26-feature contract.
-        raw = extract_features(session_df)
+        # Canonical 26-feature extraction and provenance tracking
+        raw, provenance = adapter.compute_session_features(session_dict)
 
         # Ensure all canonical features exist and are ordinary finite numbers.
         raw_features = {}
         for name in MODULE2_CANONICAL_FEATURE_NAMES:
             value = raw.get(name, 0.0)
             number = float(value)
-            if not pd.notna(number) or number in (float("inf"), float("-inf")):
+            if not math.isfinite(number):
                 number = 0.0
             raw_features[name] = number
 
-        commands = session_df["command"].astype(str).tolist()
         sequence = [
             f"cmd:{command.split()[0]}"
             for command in commands
@@ -190,54 +215,58 @@ def main() -> int:
 
         prediction = predictor.predict_session(payload).model_dump(mode="json")
 
-        # Module 4 is decision-only. This function does not execute anything.
+        # Module 4 rule-based decision engine
         decision = decide(prediction)
+
+        # Module 4 simulation-only execution adapter
+        simulation = simulate_decision(decision)
 
         reports.append({
             "session_id": str(session_id),
-            "source_ips": sorted({
-                str(ip) for ip in session_df["source_ip"].dropna().tolist()
-            }),
-            "event_count": int(len(session_df)),
+            "source_ips": source_ips,
+            "event_count": int(len(commands)),
             "commands_observed": commands,
-            "risk_scoring_method": (
-                "Local transparent keyword heuristic; not verified ground truth."
-            ),
+            "feature_provenance": provenance,
             "raw_features": raw_features,
             "module3_prediction": prediction,
             "module4_decision": decision,
+            "module4_simulation": simulation,
         })
 
+        conf = prediction["classification"]["confidence"]
+        conf_str = f"{conf:.2f}" if isinstance(conf, (int, float)) else "N/A"
         print(
             f"Session {session_id}: "
             f"classification={prediction['classification']['predicted_label']}, "
-            f"confidence={prediction['classification']['confidence']}, "
+            f"confidence={conf_str}, "
             f"intents={prediction['intent']['detected_intents']}, "
             f"strategy={decision['selected_strategy']}, "
-            f"execution={decision['execution_status']}"
+            f"simulation={simulation['status']} ({simulation.get('simulated_profile')})"
         )
 
     result = {
         "report_version": "1.0",
         "mode": "offline_historical_log_demo",
-        "source_log_directory": str(COWRIE_LOG_DIR),
+        "source_log_directory": str(log_dir),
         "source_log_files": source_files,
-        "command_events_processed": int(len(df)),
+        "command_events_processed": int(len(events)),
         "sessions_processed": len(reports),
         "safety": {
             "commands_executed": False,
             "cowrie_configuration_changed": False,
             "deception_response_executed": False,
-            "module4_execution_status": "pending",
+            "module4_execution_status": "simulated_only",
+            "live_deception_applied": False,
         },
         "limitations": [
             "Historical Cowrie logs are used; this is not live monitoring.",
             "Local source IPs such as 127.0.0.1 indicate local test activity.",
-            "Risk scores are heuristic demo features, not ground-truth labels.",
+            "MITRE and risk scores are deterministic heuristic enrichments, not ground-truth labels.",
             "Module 3 model metadata states that the model is not production validated.",
             "SHAP is an explanation of model behavior, not proof of malicious intent.",
             "Only Cowrie command-input events are aggregated in this adapter.",
             "Kernel process telemetry is not session-correlated in this demo.",
+            "Module 4 execution adapter operates in simulation-only mode; no live deception profiles are applied.",
         ],
         "sessions": reports,
     }
