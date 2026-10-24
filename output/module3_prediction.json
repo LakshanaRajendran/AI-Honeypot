@@ -1,0 +1,154 @@
+{
+  "session_id": "A82391",
+  "classification": {
+    "predicted_class": 1,
+    "predicted_label": "weaponized_intrusion",
+    "confidence": 0.99,
+    "classification_basis": "supervised_random_forest_on_provisional_targets"
+  },
+  "intent": {
+    "detected_intents": [
+      "execution"
+    ],
+    "intent_scores": {
+      "reconnaissance": 0.48,
+      "execution": 0.73,
+      "persistence": 0.38,
+      "defense_evasion": 0.34
+    },
+    "unsupported_intents": [
+      "credential_access"
+    ],
+    "intent_basis": "multi_output_random_forest_on_provisional_targets"
+  },
+  "anomaly": null,
+  "explanations": [
+    {
+      "feature_name": "unique_commands",
+      "observed_value": 6.0,
+      "reference_mean": 1.5508155583437893,
+      "reference_std": 1.937930174817478,
+      "deviation_score": 2.295843523916053,
+      "description": "Feature 'unique_commands' deviates by 2.30 standard deviations from training baseline (mean: 1.55, std: 1.94)."
+    },
+    {
+      "feature_name": "unique_mitre_tactics",
+      "observed_value": 4.0,
+      "reference_mean": 1.015056461731493,
+      "reference_std": 0.14952590263017218,
+      "deviation_score": 19.96271873811239,
+      "description": "Feature 'unique_mitre_tactics' deviates by 19.96 standard deviations from training baseline (mean: 1.02, std: 0.15)."
+    },
+    {
+      "feature_name": "unique_mitre_techniques",
+      "observed_value": 4.0,
+      "reference_mean": 1.0225846925972397,
+      "reference_std": 0.25931449911643417,
+      "deviation_score": 11.481869766433222,
+      "description": "Feature 'unique_mitre_techniques' deviates by 11.48 standard deviations from training baseline (mean: 1.02, std: 0.26)."
+    },
+    {
+      "feature_name": "session_duration_seconds",
+      "observed_value": 27.0,
+      "reference_mean": 1.971182894604768,
+      "reference_std": 6.166535099179076,
+      "deviation_score": 4.058813694051171,
+      "description": "Feature 'session_duration_seconds' deviates by 4.06 standard deviations from training baseline (mean: 1.97, std: 6.17)."
+    },
+    {
+      "feature_name": "mean_inter_event_seconds",
+      "observed_value": 5.4,
+      "reference_mean": 0.2799194459879309,
+      "reference_std": 0.5515553158545837,
+      "deviation_score": 9.282986505313579,
+      "description": "Feature 'mean_inter_event_seconds' deviates by 9.28 standard deviations from training baseline (mean: 0.28, std: 0.55)."
+    },
+    {
+      "feature_name": "min_inter_event_seconds",
+      "observed_value": 3.0,
+      "reference_mean": 0.0025141468005018823,
+      "reference_std": 0.03501477290943643,
+      "deviation_score": 85.6063199653561,
+      "description": "Feature 'min_inter_event_seconds' deviates by 85.61 standard deviations from training baseline (mean: 0.00, std: 0.04)."
+    },
+    {
+      "feature_name": "commands_per_minute",
+      "observed_value": 13.333333333333332,
+      "reference_mean": 228.51489962851142,
+      "reference_std": 73.0195939422761,
+      "deviation_score": 2.946901710591334,
+      "description": "Feature 'commands_per_minute' deviates by 2.95 standard deviations from training baseline (mean: 228.51, std: 73.02)."
+    },
+    {
+      "feature_name": "download_utility_ratio",
+      "observed_value": 0.16666666666666666,
+      "reference_mean": 0.00018820577164366378,
+      "reference_std": 0.003061840487305503,
+      "deviation_score": 54.37202283569261,
+      "description": "Feature 'download_utility_ratio' deviates by 54.37 standard deviations from training baseline (mean: 0.00, std: 0.00)."
+    },
+    {
+      "feature_name": "max_risk_score",
+      "observed_value": 8.0,
+      "reference_mean": 4.124843161856964,
+      "reference_std": 0.8857778450092324,
+      "deviation_score": 4.374863132981889,
+      "description": "Feature 'max_risk_score' deviates by 4.37 standard deviations from training baseline (mean: 4.12, std: 0.89)."
+    },
+    {
+      "feature_name": "risk_score_std",
+      "observed_value": 2.9674156357941426,
+      "reference_mean": 0.12279477463089898,
+      "reference_std": 0.41126395027874735,
+      "deviation_score": 6.9167765840774775,
+      "description": "Feature 'risk_score_std' deviates by 6.92 standard deviations from training baseline (mean: 0.12, std: 0.41)."
+    },
+    {
+      "feature_name": "high_or_critical_ratio",
+      "observed_value": 0.3333333333333333,
+      "reference_mean": 0.010225846925972396,
+      "reference_std": 0.043730659428992284,
+      "deviation_score": 7.388580246131599,
+      "description": "Feature 'high_or_critical_ratio' deviates by 7.39 standard deviations from training baseline (mean: 0.01, std: 0.04)."
+    }
+  ],
+  "shap_explanation": {
+    "model_explained": "weaponized_intrusion_probability",
+    "explainer": "SHAP TreeExplainer",
+    "top_features": [
+      {
+        "feature_name": "network_utility_ratio",
+        "shap_value": 0.119742,
+        "direction": "supports_weaponized_intrusion"
+      },
+      {
+        "feature_name": "unique_processes",
+        "shap_value": 0.088179,
+        "direction": "supports_weaponized_intrusion"
+      },
+      {
+        "feature_name": "risk_score_std",
+        "shap_value": 0.069307,
+        "direction": "supports_weaponized_intrusion"
+      },
+      {
+        "feature_name": "max_inter_event_seconds",
+        "shap_value": 0.046868,
+        "direction": "supports_weaponized_intrusion"
+      },
+      {
+        "feature_name": "unique_commands",
+        "shap_value": 0.037158,
+        "direction": "supports_weaponized_intrusion"
+      }
+    ],
+    "interpretation_note": "Positive SHAP values push the model toward class 1 (weaponized_intrusion); negative values push it away. These are model contributions, not proof of malicious intent."
+  },
+  "label_provenance": "provisional_rule_derived_behavioral_targets",
+  "limitations": [
+    "PROVISIONAL TARGET LABELS: Targets were derived via deterministic rule patterns and do not represent verified external ground truth.",
+    "BOTNET REPETITION OVERLAP: Predictions are evaluated on known honeypot botnet archetypes; high confidence indicates recognition of learned script archetypes rather than novel attack generalization.",
+    "FEATURE-LABEL CIRCULARITY: The 26 canonical features include heuristic risk/MITRE scores that partly share keywords with the labeling rules.",
+    "UNSUPPORTED INTENT: 'credential_access' has only 3 positive cases across 1,000 sessions (0.3% support) and is excluded from supervised ML prediction to prevent unreliable outputs."
+  ]
+}

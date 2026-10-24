@@ -1,5 +1,24 @@
-pandas
-numpy
-scikit-learn
-joblib
-pytest
+# AI-Driven Adaptive Deception Mesh — Integrated Dependencies
+# Compatible with Python 3.10 - 3.14 (Verified in Python 3.14.4 on Ubuntu Linux)
+
+# Data Processing & Feature Pipeline (Module 2)
+numpy>=1.26.0
+pandas>=2.1.0
+scikit-learn>=1.5.0
+joblib>=1.4.0
+
+# AI/XAI Prediction & Explainability Engine (Module 3)
+pydantic>=2.8.0
+shap>=0.45.0
+scipy>=1.13.0
+
+# Rule-Based Policy & Simulation Adapter (Module 4)
+# (Zero external pip dependencies — uses Python standard library)
+
+# Operations Dashboard Backend
+# (Zero external pip dependencies — uses Python standard library http.server)
+
+# Testing & Validation
+pytest>=8.0.0
+python-dateutil>=2.9.0
+tqdm>=4.66.0

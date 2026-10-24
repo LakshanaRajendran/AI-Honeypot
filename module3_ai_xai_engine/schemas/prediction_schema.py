@@ -124,6 +124,23 @@ class AuxiliaryAnomalyOutput(BaseModel):
     )
 
 
+class ShapFeatureContribution(BaseModel):
+    """A signed SHAP contribution for one input feature."""
+
+    feature_name: str
+    shap_value: float
+    direction: str
+
+
+class ShapExplanation(BaseModel):
+    """SHAP explanation for the binary weaponized-intrusion model."""
+
+    model_explained: str
+    explainer: str
+    top_features: List[ShapFeatureContribution] = Field(default_factory=list)
+    interpretation_note: str
+
+
 class UnifiedModule3Result(BaseModel):
     """Unified structured response conforming to Module 3 specification for Module 4 handoff."""
 
@@ -137,6 +154,10 @@ class UnifiedModule3Result(BaseModel):
     explanations: List[FeatureDeviationExplanation] = Field(
         default_factory=list,
         description="Transparent feature deviations identifying unusual attributes."
+    )
+    shap_explanation: Optional[ShapExplanation] = Field(
+        default=None,
+        description="Optional SHAP explanation of the binary classifier prediction."
     )
     label_provenance: str = Field(
         default="provisional_rule_derived_behavioral_targets",
